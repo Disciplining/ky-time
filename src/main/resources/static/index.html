@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <title>考研时间</title>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready
+            (
+                function()
+                {
+                    $(".form").slideDown(500);
+                    $("#landing").addClass("border-btn");
+                    $("#registered").click
+                    (
+                        function()
+                        {
+                            $("#landing").removeClass("border-btn");
+                            $("#landing-content").hide(500);
+                            $(this).addClass("border-btn");
+                            $("#registered-content").show(500);
+
+                        }
+                    );
+                    $("#landing").click
+                    (
+                        function()
+                        {
+                            $("#registered").removeClass("border-btn");
+                            $(this).addClass("border-btn");
+
+                            $("#landing-content").show(500);
+                            $("#registered-content").hide(500);
+                        }
+                    );
+                }
+            );
+        </script>
+        <style>
+            *
+            {
+                margin: 0;
+                padding: 0;
+                font-family: "微软雅黑";
+            }
+            body
+            {
+                background-size: cover;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                -ms-background-size: cover;
+                background-attachment: fixed;
+            }
+            .form
+            {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -185px;
+                margin-top: -210px;
+                height: 420px;
+                width: 340px;
+                font-size: 18px;
+                -webkit-box-shadow: 0px 0px 10px #A6A6A6;
+                background: #fff;
+            }
+            .border-btn
+            {
+                border-bottom: 1px solid #ccc;
+            }
+            #landing-content
+            {
+                padding-top: 100px;
+                clear: both;
+            }
+            .inp
+            {
+                height: 30px;
+                margin: 0 auto;
+                margin-bottom: 30px;
+                width: 200px;
+            }
+            .inp>input
+            {
+                text-align: center;
+                height: 30px;
+                width: 200px;
+                margin: 0 auto;
+                transition: all 0.3s ease-in-out;
+            }
+            #photo>img:hover
+            {
+                -webkit-transform: rotateZ(360deg);
+                -moz-transform: rotateZ(360deg);
+                -o-transform: rotateZ(360deg);
+                -ms-transform: rotateZ(360deg);
+                transform: rotateZ(360deg);
+            }
+            #photo>img
+            {
+                height: 80px;
+                width: 80px;
+                -webkit-background-size: 220px 220px;
+                border-radius: 60px;
+                -webkit-transition: -webkit-transform 1s linear;
+                -moz-transition: -moz-transform 1s linear;
+                -o-transition: -o-transform 1s linear;
+                -ms-transition: -ms-transform 1s linear;
+            }
+            .fix
+            {
+                clear: both;
+            }
+            .form
+            {
+                display: none;
+            }
+            .inp
+            {
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="form">
+            <div id="landing-content">
+                <div class="inp">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;离考试：<b id="first"></b></div>
+                <div class="inp">离找王道昌已过：<b id="second"></b></div>
+            </div>
+        </div>
+
+        <script>
+            let examTime = new Date(2022,11,24); // 考试时间 2022年12月24日
+            let wdcTime = new Date(2021,11,5); // 去找王道昌时间 2021年12月05日
+            let nowTime = new Date();
+
+            $('#first').text(this.calcTime(nowTime, examTime));
+            $('#second').text(this.calcTime(nowTime, wdcTime));
+
+            function calcTime(beginTime, endTime)
+            {
+                let deltaTimeNumber = Math.abs(endTime.getTime() - beginTime.getTime());
+                let dayNumber = Math.floor(deltaTimeNumber / 86400000);
+                return dayNumber+"天";
+            }
+        </script>
+    </body>
+
+</html>
